@@ -29,27 +29,27 @@ It enables you to write things like this, straight away:
         # ...
         # something that can go horribly wrong
         if ( $error_condition ) {
-            die TryCatch::Error->new( value => $foo, string => $bar );
+            die TryCatch::Error->new( value => $foo, message => $bar );
         }
     }
     catch ( TryCatch::Error $e ) {
-        print STDERR 'Ooops: ', $e->get_string, 'with ', $e->get_value;
+        print STDERR 'Ooops: ', $e->get_message, ' with ', $e->get_value;
     }
 
 TryCatch::Error can be sub-classed to create your own errors (possibly containing more detail, see t/03-subclassing.t for an example).
 
 =cut
 
-has 'value'  => (
-    is       => 'rw',
-    isa      => 'Int',
-    default  => 0,
+has 'value'   => (
+    is        => 'rw',
+    isa       => 'Int',
+    default   => 0,
 );
 
-has 'string' => (
-    is       => 'rw',
-    isa      => 'Str',
-    default  => '',
+has 'message' => (
+    is        => 'rw',
+    isa       => 'Str',
+    default   => '',
 );
 
 __PACKAGE__->meta->make_immutable;
@@ -62,7 +62,7 @@ no MooseX::FollowPBP;
 
 Create a new error object:
 
-    my $e = TryCatch::Error->new( value => $foo, string => bar );
+    my $e = TryCatch::Error->new( value => $foo, message => bar );
 
 =head1 ACCESSORS
 
@@ -70,7 +70,7 @@ Create a new error object:
 
 =head2 set_*
 
-The default TryCatch::Error has 2 attributes, B<value> and B<string>, which are an integer and a string.
+The default TryCatch::Error has 2 attributes, B<value> and B<message>, which are an integer and a string.
 
 
 =head1 AUTHOR
@@ -79,11 +79,7 @@ Pedro Figueiredo, C<< <me at pedrofigueiredo.org> >>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-trycatch-error at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=TryCatch-Error>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
-
-
+Please report any bugs or feature requests to C<bug-trycatch-error at rt.cpan.org>, or through the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=TryCatch-Error>.  I will be notified, and then you'll automatically be notified of progress on your bug as I make changes.
 
 
 =head1 SUPPORT
@@ -118,6 +114,13 @@ L<http://search.cpan.org/dist/TryCatch-Error/>
 
 =head1 ACKNOWLEDGEMENTS
 
+=over 4
+
+=item * Ash Berlin, the author of TryCatch
+
+=item * The Moose crew
+
+=back
 
 =head1 COPYRIGHT & LICENSE
 
@@ -129,4 +132,4 @@ under the same terms as Perl itself.
 
 =cut
 
-1; # End of TryCatch::Error
+45; # End of TryCatch::Error

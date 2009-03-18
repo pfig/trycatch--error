@@ -55,27 +55,27 @@ package main;
 my $be = TryCatch::Error::Simple::Base->new;
 
 is( $be->get_value, 0, 'Correct value' );
-is( $be->get_string, '', 'Correct string' );
+is( $be->get_message, '', 'Correct message' );
 is( $be->get_object, undef, 'Correct object' );
 
 $be->set_value( 1 );
-$be->set_string( 'An error' );
+$be->set_message( 'An error' );
 $be->set_object( bless { foo => 'bar' }, 'MyObject' );
 
 is( $be->get_value, 1, 'Correct value' );
-is( $be->get_string, 'An error', 'Correct string' );
+is( $be->get_message, 'An error', 'Correct message' );
 isa_ok( $be->get_object, 'MyObject' );
 
 my $me = TryCatch::Error::Simple::Moose->new;
 
 is( $me->get_value, 0, 'Correct value' );
-is( $me->get_string, '', 'Correct string' );
+is( $me->get_message, '', 'Correct message' );
 is( $me->get_object, undef, 'Correct object' );
 
 $me->set_value( 1 );
-$me->set_string( 'An error' );
+$me->set_message( 'An error' );
 $me->set_object( bless { foo => 'bar' }, 'MyObject' );
 
 is( $me->get_value, 1, 'Correct value' );
-is( $me->get_string, 'An error', 'Correct string' );
+is( $me->get_message, 'An error', 'Correct message' );
 isa_ok( $me->get_object, 'MyObject' );
